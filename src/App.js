@@ -1,22 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import imageRickMorty from "./img/rick-morty.png";
+import imageRickMorty2 from "./img/rick-morty2.png";
+import logoRickyMorty from "./img/logo.png";
+import "./App.css";
+import { useState } from "react";
+import Characters from "./components/Characters";
 
 function App() {
+  //generate state
+  const [characters, setCharacters] = useState(null);
+
+  let url = "https://rickandmortyapi.com/api/character?page=";
+  const allCharacters = [];
+  //api call
+  const regApi = async () => {
+    // iterate to modify url and dump data into array based on number of character pages (42)
+    for (let i = 1; i <= 42; i++) {
+      let res = await fetch(url + i);
+      let characterApi = await res.json();
+
+      //add all characters from single page into array
+      characterApi.results.forEach((element) => {
+        allCharacters.push(element);
+      });
+    }
+
+    //set state with new array filled with all characters
+    setCharacters(allCharacters);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <>
+          <img
+            src={logoRickyMorty}
+            alt="Logo Rick & Morty"
+            className="img-logo"
+          ></img>
+        </>
+
+        {/* if characters is not null, otherwise show home*/}
+        {characters ? (
+          <Characters characters={characters} setCharacters={setCharacters} />
+        ) : (
+          <>
+            <img
+              src={imageRickMorty2}
+              alt="Rick & Morty"
+              className="img-home"
+            ></img>
+            <button onClick={regApi} className="btn-search">
+              Browse Characters
+            </button>
+          </>
+        )}
       </header>
     </div>
   );
