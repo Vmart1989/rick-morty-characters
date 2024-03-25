@@ -1,4 +1,3 @@
-import imageRickMorty from "./img/rick-morty.png";
 import imageRickMorty2 from "./img/rick-morty2.png";
 import logoRickyMorty from "./img/logo.png";
 import "./App.css";
