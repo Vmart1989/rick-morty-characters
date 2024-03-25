@@ -1,5 +1,6 @@
 export default function Characters(props) {
   const { characters, setCharacters } = props;
+  
 
   const resetCharacters = () => {
     setCharacters(null);
@@ -36,6 +37,15 @@ export default function Characters(props) {
      
   }; 
 
+  const handleFilter = (e) => {
+    const searchTerm = e.target.value;
+    
+    let filteredCharacters = [...characters]
+    const filtered = filteredCharacters.filter(character => character.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    setCharacters(filtered);
+     
+  };
+
   return (
     <div className="characters">
       <div className="btn-nav">
@@ -49,6 +59,9 @@ export default function Characters(props) {
             className="btn-search"
             type="text"
             placeholder="Find character..."
+            
+            onChange={handleFilter}
+            
           ></input>
 
           <button className="btn-search " onClick={resetCharacters}>

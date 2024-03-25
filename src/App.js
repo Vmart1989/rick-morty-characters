@@ -7,6 +7,7 @@ import Characters from "./components/Characters";
 function App() {
   //generate state
   const [characters, setCharacters] = useState(null);
+  
 
   let url = "https://rickandmortyapi.com/api/character?page=";
   const allCharacters = [];
