@@ -26,7 +26,7 @@ function App() {
 
     //set state with new array filled with all characters
     setCharacters(allCharacters);
-    setApiUsers(allCharacters);
+    
     
   };
 
@@ -43,7 +43,7 @@ function App() {
 
         {/* if characters is not null, otherwise show home*/}
         {characters ? (
-          <Characters characters={characters} setCharacters={setCharacters} apiUsers={apiUsers} setApiUsers={setApiUsers} />
+          <Characters characters={characters} setCharacters={setCharacters} />
         ) : (
           <>
             <img

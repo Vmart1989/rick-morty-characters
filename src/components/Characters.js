@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Characters(props) {
   const { characters, setCharacters } = props;
-  const [filteredUsers, setFilteredUsers] = useState(characters)
+  const [filteredCharacters] = useState(characters)
 
 
 
@@ -10,7 +10,7 @@ export default function Characters(props) {
     const searchTerm = e.target.value;
     
     //let filteredCharacters = [...characters]
-    const filtered = filteredUsers.filter(character => character.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filtered = filteredCharacters.filter(character => character.name.toLowerCase().includes(searchTerm.toLowerCase()));
     setCharacters(filtered);
      
   };
