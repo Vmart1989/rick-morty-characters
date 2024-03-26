@@ -7,7 +7,7 @@ import Characters from "./components/Characters";
 function App() {
   //generate state
   const [characters, setCharacters] = useState(null);
-  
+  const [apiUsers, setApiUsers] = useState([])
 
   let url = "https://rickandmortyapi.com/api/character?page=";
   const allCharacters = [];
@@ -26,6 +26,8 @@ function App() {
 
     //set state with new array filled with all characters
     setCharacters(allCharacters);
+    setApiUsers(allCharacters);
+    
   };
 
   return (
@@ -41,7 +43,7 @@ function App() {
 
         {/* if characters is not null, otherwise show home*/}
         {characters ? (
-          <Characters characters={characters} setCharacters={setCharacters} />
+          <Characters characters={characters} setCharacters={setCharacters} apiUsers={apiUsers} setApiUsers={setApiUsers} />
         ) : (
           <>
             <img
