@@ -62,8 +62,15 @@ function App() {
             </button>
           </>
         )}
+        
       </header>
+      <footer className="App-footer">
+      Developed by <a className="App-link" target="blank" href="https://github.com/Vmart1989">Víctor Martínez</a>
+      </footer>
+
     </div>
+
+
   );
 }
 
