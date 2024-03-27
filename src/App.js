@@ -1,13 +1,15 @@
-import imageRickMorty2 from "./img/rick-morty2.png";
+import imageRickMorty from "./img/rick-morty.png";
 import logoRickyMorty from "./img/logo.png";
+
 import "./App.css";
 import { useState } from "react";
 import Characters from "./components/Characters";
 
+
+
 function App() {
   //generate state
   const [characters, setCharacters] = useState(null);
-  const [apiUsers, setApiUsers] = useState([])
 
   let url = "https://rickandmortyapi.com/api/character?page=";
   const allCharacters = [];
@@ -23,10 +25,14 @@ function App() {
         allCharacters.push(element);
       });
     }
-
-    //set state with new array filled with all characters
-    setCharacters(allCharacters);
+      //remove duplicated names
+      const uniqueCharacters = allCharacters.filter(
+        (obj, index) =>
+          allCharacters.findIndex((item) => item.name === obj.name) === index
+      );
     
+    //set state with new object array filled with all characters
+    setCharacters(uniqueCharacters);
     
   };
 
@@ -41,13 +47,13 @@ function App() {
           ></img>
         </>
 
-        {/* if characters is not null, otherwise show home*/}
+        {/* if characters is not null display them, otherwise show home*/}
         {characters ? (
           <Characters characters={characters} setCharacters={setCharacters} />
         ) : (
           <>
             <img
-              src={imageRickMorty2}
+              src={imageRickMorty}
               alt="Rick & Morty"
               className="img-home"
             ></img>

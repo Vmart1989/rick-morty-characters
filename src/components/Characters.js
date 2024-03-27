@@ -1,17 +1,26 @@
 import { useState } from "react";
+import notFoundImage from "../img/not-found.png"
 
 export default function Characters(props) {
   const { characters, setCharacters } = props;
   const [filteredCharacters] = useState(characters)
+  
 
-
+ 
+  //console.log(characters);
+  //setCharacters(uniqueCharacters.map(character => character))
 
   const handleFilter = (e) => {
     const searchTerm = e.target.value;
     
-    //let filteredCharacters = [...characters]
     const filtered = filteredCharacters.filter(character => character.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    
+
     setCharacters(filtered);
+    
+    
+    
      
   };
 
@@ -70,16 +79,21 @@ export default function Characters(props) {
             
           ></input>
 
+
           <button className="btn-search " onClick={resetCharacters}>
             Home
           </button>
         </div>
       </div>
 
+      {characters.length > 0 ? (
+                  <> 
+     {/* CONTAINER CARACTERS */}
       <div className="container-characters">
-        {/* recorro el array de personajes con map */}
+        
+        
         {characters.map((character, index) => (
-          // return implicito
+          
           <div className="character-container" key={index}>
             <div>
               <img src={character.image} alt={character.name}></img>
@@ -114,6 +128,22 @@ export default function Characters(props) {
       <button className="btn-search" onClick={resetCharacters}>
         Home
       </button>
+                  </>
+                  ) : (
+                    <>
+                      <p className="black">
+                      Oops! Character not found
+                      </p>
+                      <img
+              src={notFoundImage}
+              alt="Character not Found"
+              className="img-not-found"
+              ></img>
+                    </>
+                  )}
+
+
+      
     </div>
   );
 }
